@@ -22,13 +22,13 @@ namespace TestApplication.Api.Controllers
                 request.Email, request.Password);
             var response = new AuthenticationResponse()
             {
-                Id = Guid.NewGuid(),
-                FirstName = request.FirstName,
-                LastName = request.LastName,
-                Email = request.Email,
-                Token = "token"
+                Id = authResult.Id,
+                FirstName = authResult.FirstName,
+                LastName = authResult.LastName,
+                Email = authResult.Email,
+                Token = authResult.Token
             };
-            return Ok(request);
+            return Ok(response);
         }
 
         [HttpPost("login")]
@@ -37,11 +37,11 @@ namespace TestApplication.Api.Controllers
             var authResult = _authenticationService.Login(request.Email, request.Password);
             var response = new AuthenticationResponse()
             {
-                Id = Guid.NewGuid(),
-                Email = request.Email,
-                Token = "token"
+                Id = authResult.Id,
+                Email = authResult.Email,
+                Token = authResult.Token
             };
-            return Ok(request);
+            return Ok(response);
         }
     }
 }
